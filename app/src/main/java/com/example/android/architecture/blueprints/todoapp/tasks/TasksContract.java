@@ -64,6 +64,8 @@ public interface TasksContract {
         boolean isActive();
 
         void showFilteringPopUpMenu();
+
+        void logNumTasks(List<Task> tasks);
     }
 
     interface Presenter extends BasePresenter {

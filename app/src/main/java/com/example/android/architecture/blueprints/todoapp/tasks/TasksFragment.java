@@ -44,6 +44,7 @@ import com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTa
 import com.example.android.architecture.blueprints.todoapp.data.Task;
 import com.example.android.architecture.blueprints.todoapp.taskdetail.TaskDetailActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,6 +205,13 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         });
 
         popup.show();
+    }
+
+    @Override
+    public void logNumTasks(List<Task> tasks) {
+        Intent intent = new Intent(getContext(), JobServiceNumTasks.class);
+        intent.putExtra("ListClass", (Serializable) tasks);
+        JobServiceNumTasks.enqueueWork(getContext(), intent);
     }
 
     /**

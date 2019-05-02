@@ -17,6 +17,9 @@
 package com.example.android.architecture.blueprints.todoapp.tasks;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.android.architecture.blueprints.todoapp.addedittask.AddEditTaskActivity;
@@ -120,6 +123,7 @@ public class TasksPresenter implements TasksContract.Presenter {
                             break;
                     }
                 }
+                logNumOfTasks(tasks);
                 // The view may not be able to handle UI updates anymore
                 if (!mTasksView.isActive()) {
                     return;
@@ -140,6 +144,10 @@ public class TasksPresenter implements TasksContract.Presenter {
                 mTasksView.showLoadingTasksError();
             }
         });
+    }
+
+    private void logNumOfTasks(List<Task> tasks) {
+        mTasksView.logNumTasks(tasks);
     }
 
     private void processTasks(List<Task> tasks) {
